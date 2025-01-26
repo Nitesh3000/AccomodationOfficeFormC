@@ -13,9 +13,9 @@ This project is a **Spring Boot-based web application** designed to manage accom
 ---
 
 Technologies Used
-Backend: Java, Spring Boot
-Frontend: Thymeleaf, HTML, CSS
-Database: MySQL
+- Backend: Java, Spring Boot
+- Frontend: Thymeleaf, HTML, CSS
+- Database: MySQL
 ---
 
 ## Project Structure
