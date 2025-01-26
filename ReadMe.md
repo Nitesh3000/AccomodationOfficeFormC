@@ -12,6 +12,12 @@ This project is a **Spring Boot-based web application** designed to manage accom
 
 ---
 
+Technologies Used
+Backend: Java, Spring Boot
+Frontend: Thymeleaf, HTML, CSS
+Database: MySQL
+---
+
 ## Project Structure
 
 ```plaintext
@@ -31,3 +37,4 @@ This project is a **Spring Boot-based web application** designed to manage accom
 │   │       └── application.properties
 ├── README.md
 └── schema.sql                     # SQL schema for database creation
+'''
