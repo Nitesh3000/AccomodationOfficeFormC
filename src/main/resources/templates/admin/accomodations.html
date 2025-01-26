@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Manage Accommodations</title>
+</head>
+<body>
+    <h1>Manage Accommodations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="accommodation : ${accommodations}">
+                <td th:text="${accommodation.id}"></td>
+                <td th:text="${accommodation.name}"></td>
+                <td th:text="${accommodation.location}"></td>
+                <td th:text="${accommodation.status}"></td>
+                <td>
+                    <a th:href="@{/admin/accommodations/edit/{id}(id=${accommodation.id})}">Edit</a>
+                    <a th:href="@{/admin/accommodations/delete/{id}(id=${accommodation.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

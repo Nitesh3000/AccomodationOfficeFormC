@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .loading-message {
+            display: none;
+            color: green;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container form-container">
+        <h2 class="text-center mb-4">Accommodation Form</h2>
+
+        <form id="accommodationForm" action="/submit" method="POST">
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <!-- Address Field -->
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" required>
+            </div>
+
+            <!-- City Field -->
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+
+            <!-- State Field -->
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" name="state" required>
+            </div>
+
+            <!-- Zip Code Field -->
+            <div class="form-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" class="form-control" id="zipCode" name="zipCode" required>
+            </div>
+
+            <!-- Accommodation Type -->
+            <div class="form-group">
+                <label for="accommodationType">Accommodation Type</label>
+                <select class="form-control" id="accommodationType" name="accommodationType" required>
+                    <option value="singleRoom">Single Room</option>
+                    <option value="doubleRoom">Double Room</option>
+                    <option value="suite">Suite</option>
+                </select>
+            </div>
+
+            <!-- Check-in Date -->
+            <div class="form-group">
+                <label for="checkInDate">Check-in Date</label>
+                <input type="date" class="form-control" id="checkInDate" name="checkInDate" required>
+            </div>
+
+            <!-- Check-out Date -->
+            <div class="form-group">
+                <label for="checkOutDate">Check-out Date</label>
+                <input type="date" class="form-control" id="checkOutDate" name="checkOutDate" required>
+            </div>
+
+            <!-- Special Requests -->
+            <div class="form-group">
+                <label for="specialRequests">Special Requests</label>
+                <textarea class="form-control" id="specialRequests" name="specialRequests" rows="4"></textarea>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country" name="country" required>
+            </div>
+
+            <!-- Visa Details -->
+            <div class="form-group">
+                <label for="visaDetails">Visa Details (if applicable)</label>
+                <textarea class="form-control" id="visaDetails" name="visaDetails" rows="4"></textarea>
+            </div>
+
+            <!-- Travel Dates (From and To) -->
+            <div class="form-group">
+                <label for="travelFromDate">Travel From Date</label>
+                <input type="date" class="form-control" id="travelFromDate" name="travelFromDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="travelToDate">Travel To Date</label>
+                <input type="date" class="form-control" id="travelToDate" name="travelToDate" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+
+        <!-- Loading Message -->
+        <div class="loading-message" id="loadingMessage">Submitting your form... Please wait.</div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage" style="display:none;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById("accommodationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            let formValid = true;
+
+            document.getElementById("errorMessage").style.display = "none";
+
+            const requiredFields = ['name', 'email', 'phone', 'message', 'address', 'city', 'state', 'zipCode', 'accommodationType', 'checkInDate', 'checkOutDate', 'country', 'travelFromDate', 'travelToDate'];
+            requiredFields.forEach(field => {
+                const inputField = document.getElementById(field);
+                if (!inputField.value) {
+                    formValid = false;
+                    inputField.classList.add("is-invalid");
+                } else {
+                    inputField.classList.remove("is-invalid");
+                }
+            });
+
+          
+            if (formValid) {
+                document.getElementById("loadingMessage").style.display = "block";
+                
+                
+                setTimeout(function() {
+                    document.getElementById("loadingMessage").style.display = "none";
+                    alert("Form submitted successfully!");
+                    document.getElementById("accommodationForm").reset(); 
+                }, 3000);
+            } else {
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("errorMessage").innerText = "Please fill in all required fields!";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

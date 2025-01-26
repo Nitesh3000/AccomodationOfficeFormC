@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Edit Accommodation</title>
+</head>
+<body>
+    <h1>Edit Accommodation</h1>
+    <form th:action="@{/admin/accommodations/update/{id}(id=${accommodation.id})}" th:object="${accommodation}" method="post">
+        <label for="name">Accommodation Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" th:field="*{location}" required />
+
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}">
+            <option value="Available" th:selected="${accommodation.status == 'Available'}">Available</option>
+            <option value="Booked" th:selected="${accommodation.status == 'Booked'}">Booked</option>
+            <option value="Pending" th:selected="${accommodation.status == 'Pending'}">Pending</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
