@@ -21,11 +21,10 @@ public class AdminController {
     @Autowired
     private FormService formService;
 
-    // Show all accommodations
     @GetMapping("/accommodations")
     public String listAccommodations(Model model) {
         model.addAttribute("accommodations", formService.getAllAccommodations());
-        return "admin/accommodations"; // admin/accommodations.html will show the list of accommodations
+        return "admin/accommodations"; 
     }
 
     // Show form for editing FormData

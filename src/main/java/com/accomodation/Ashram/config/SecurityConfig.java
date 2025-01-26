@@ -15,17 +15,17 @@ public class SecurityConfig {
         http
             .authorizeRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/login", "/register", "/submit").permitAll()  // Allow access to login and register pages
-                    .anyRequest().authenticated()  // All other requests require authentication
+                    .requestMatchers("/login", "/register", "/submit").permitAll()  
+                    .anyRequest().authenticated() 
             )
             .formLogin(form -> form
-                .loginPage("/login")  // Customize the login page if needed
-                .permitAll()  // Allow everyone to access the login page
+                .loginPage("/login")  
+                .permitAll() 
             )
             .logout(logout -> logout
-                .logoutUrl("/logout")  // Customize the logout URL if needed
-                .logoutSuccessUrl("/login?logout")  // Redirect to login after logout
+                .logoutUrl("/logout") 
+                .logoutSuccessUrl("/login?logout")  
             );
-        return http.build();  // Build the SecurityFilterChain
+        return http.build();  
     }
 }

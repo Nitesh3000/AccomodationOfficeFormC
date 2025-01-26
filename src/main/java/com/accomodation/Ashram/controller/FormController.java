@@ -14,18 +14,17 @@ public class FormController {
     @Autowired
     private FormService formService;
 
-    // Display form
+
     @GetMapping("/")
     public String showForm(Model model) {
         model.addAttribute("formData", new FormData());
-        return "index"; // index.html will show the form
+        return "index"; 
     }
 
-    // Handle form submission
+   
     @PostMapping("/submit")
     public String submitForm(FormData formData, Model model) {
-        formService.saveFormData(formData); // Save the data using FormService
+        formService.saveFormData(formData); 
         model.addAttribute("message", "Form submitted successfully!");
-        return "redirect:/result"; // result.html will show the confirmation message
-    }
+        return "redirect:/result"; 
 }
